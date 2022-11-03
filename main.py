@@ -1,5 +1,6 @@
 from room import Room
 from item import Item
+import time
 from character import Enemy, Friend
 
 
@@ -85,4 +86,5 @@ while dead == False:
         if inhabitant is not None and isinstance(inhabitant, Friend):
             gift = input("What would you like to gift " + inhabitant.name + "? ")
             inhabitant.gift(gift)
+    time.sleep(1)
 

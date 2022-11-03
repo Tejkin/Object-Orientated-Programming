@@ -59,4 +59,5 @@ class Friend(Character):
         if gift == self.favourite:
             print(self.name + " really enjoyed the " + gift)
         else:
-            print(self.name + " didn't care for " + gift)
+            print(self.name + " didn't care for the " + gift)
+
