@@ -2,8 +2,15 @@ from room import Room
 from item import Item
 import time
 from character import Enemy, Friend
+from rpginfo import RPGInfo
 
 
+dungeon = RPGInfo("The Deep Dungeon")
+dungeon.welcome()
+RPGInfo.info()
+
+RPGInfo.author = "FutureLearn"
+RPGInfo.credits()
 ##rooms
 kitchen = Room("kitchen")
 ballroom = Room("ballroom")
@@ -41,8 +48,6 @@ potion = Item("potion")
 
 sword.set_descrtiption("Rusty chipped sword looted from a fallen soldier")
 potion.set_descrtiption("Small potion gleaming with red light")
-
-potion.get_details()
 
 ## travelling through rooms
 current_room = kitchen
@@ -87,4 +92,3 @@ while dead == False:
             gift = input("What would you like to gift " + inhabitant.name + "? ")
             inhabitant.gift(gift)
     time.sleep(1)
-
