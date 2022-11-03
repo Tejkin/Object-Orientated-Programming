@@ -42,3 +42,21 @@ class Enemy(Character):
         else:
             print(self.name + " crushes you, puny adventurer")
             return False
+
+class Friend(Character):
+    def __init__(self, char_name, char_description):
+        super().__init__(char_name, char_description)
+        self.weakness = None
+    def get_favourite(self):
+        return self.get_favourite
+    def set_favourite(self, favourite):
+        self.favourite = favourite
+    def hug(self):
+        print("You hugged " + self.name)
+        if self.favourite == "hug":
+            print(self.name + " cried of happiness")
+    def gift(self, gift):
+        if gift == self.favourite:
+            print(self.name + " really enjoyed the " + gift)
+        else:
+            print(self.name + " didn't care for " + gift)
