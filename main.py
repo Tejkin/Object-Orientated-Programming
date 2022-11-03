@@ -45,9 +45,17 @@ kitchen.set_character(bob)
 ## items
 sword = Item("sword")
 potion = Item("potion")
+torch = Item("torch")
 
-sword.set_descrtiption("Rusty chipped sword looted from a fallen soldier")
-potion.set_descrtiption("Small potion gleaming with red light")
+sword.set_description("Rusty chipped sword looted from a fallen soldier")
+potion.set_description("Small potion gleaming with red light")
+torch.set_description("A dim flame flickers on the end of the torch")
+
+dining_hall.set_item(torch)
+ballroom.set_item(potion)
+
+## back pack
+backpack = []
 
 ## travelling through rooms
 current_room = kitchen
@@ -57,10 +65,15 @@ dead = False
 while dead == False:
     print("\n")
     current_room.get_details()
-
+    item = current_room.get_item()
     inhabitant = current_room.get_character()
     if inhabitant is not None:
         inhabitant.describe()
+    if item is not None:
+        item.describe()
+        item.take_item()
+        current_room.set_item(None)
+        backpack.append(item)
 
     command = input("> ")
     if command in ["north", "south", "east", "west"]:
@@ -72,10 +85,14 @@ while dead == False:
             print("You can only talk to yourself in this room")
     elif command == "fight":
         if inhabitant is not None and isinstance(inhabitant, Enemy):
-            fight_with = input("What would you like to fight with? ")
-            if inhabitant.fight(fight_with) == False:
-                print("You have died")
-                dead = True
+            print("What would you like to fight with? \nItems:")
+            while True:
+                for item in backpack:
+                    print(item.name)
+                fight_with = input(">")
+                if inhabitant.fight(fight_with) == False:
+                    print("You have died")
+                    dead = True
         else:
             print("There is no one to fight with in this room")
 
@@ -91,5 +108,4 @@ while dead == False:
         if inhabitant is not None and isinstance(inhabitant, Friend):
             gift = input("What would you like to gift " + inhabitant.name + "? ")
             inhabitant.gift(gift)
-    time.sleep(1)
 RPGInfo.credits()
