@@ -92,3 +92,4 @@ while dead == False:
             gift = input("What would you like to gift " + inhabitant.name + "? ")
             inhabitant.gift(gift)
     time.sleep(1)
+RPGInfo.credits()
